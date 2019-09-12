@@ -1,0 +1,14 @@
+.DS_Store
+.custom.el
+.mc-lists.el
+ac-comphist.dat
+auto-save-list/
+ido.last
+private/
+projectile-bookmarks.eld
+projectile.cache
+smex-items
+transient/
+url/
+vendor/
+elpa/
