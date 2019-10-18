@@ -1,3 +1,7 @@
+;;; package --- Summary
+;;; Code:
+;;; Commentary:
+
 (use-package web-mode
   :bind (("C-c ]" . emmet-next-edit-point)
          ("C-c [" . emmet-prev-edit-point)
@@ -93,3 +97,4 @@
   :commands (impatient-mode))
 
 (provide 'lang-web)
+;;; lang-web ends here
