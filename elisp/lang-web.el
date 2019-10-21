@@ -96,5 +96,20 @@
   :diminish (impatient-mode . " i")
   :commands (impatient-mode))
 
+(use-package add-node-modules-path)
+
+(use-package prettier-js
+  :config
+  (defun web-mode-init-prettier-hook ()
+  (add-node-modules-path)
+  (prettier-js-mode))
+  (add-hook 'web-mode-hook  'web-mode-init-prettier-hook))
+
+;; Enable eslint checker for web-mode
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+;; Enable flycheck globally
+(add-hook 'after-init-hook #'global-flycheck-mode)
+;;
+
 (provide 'lang-web)
 ;;; lang-web ends here
