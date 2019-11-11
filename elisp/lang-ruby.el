@@ -2,26 +2,45 @@
 ;;; Code:
 ;;; Commentary:
 
-(use-package ruby-mode
+;; (use-package ruby-mode
+;;   :mode
+;;   (("\\.rb\\'" . ruby-mode)))
+
+(use-package enh-ruby-mode
   :mode
-  (("\\.rb\\'" . ruby-mode)))
+  (("\\.rb\\'" . enh-ruby-mode)))
+
+(add-to-list 'auto-mode-alist
+             '("\\(?:\\.rb\\|ru\\|rake\\|thor\\|jbuilder\\|gemspec\\|podspec\\|/\\(?:Gem\\|Rake\\|Cap\\|Thor\\|Vagrant\\|Guard\\|Pod\\)file\\)\\'" . enh-ruby-mode))
+
+(use-package highlight-indentation
+  :ensure t
+  :config
+  (add-hook 'enh-ruby-mode-hook
+	    (lambda () (highlight-indentation-current-column-mode)))
+  (set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
+  )
 
 (use-package inf-ruby)
+
 (use-package robe
   :config
   (push 'company-robe company-backends))
 
-(use-package rinari)
-(use-package flymake-ruby)
-(use-package ruby-end)
+(use-package rinari
+  :ensure t)
+(use-package flymake-ruby
+  :ensure t)
+(use-package ruby-end
+  :ensure t)
 
-(add-hook 'ruby-mode-hook 'rubocopfmt-mode)
-(add-hook 'ruby-mode-hook 'rubocop-mode)
-(add-hook 'ruby-mode-hook 'flymake-ruby-load)
-(add-hook 'ruby-mode-hook 'robe-mode)
+(add-hook 'enh-ruby-mode-hook 'rubocopfmt-mode)
+(add-hook 'enh-ruby-mode-hook 'rubocop-mode)
+(add-hook 'enh-ruby-mode-hook 'flymake-ruby-load)
+(add-hook 'enh-ruby-mode-hook 'robe-mode)
 
 
-(add-hook 'ruby-mode-hook
+(add-hook 'enh-ruby-mode-hook
           (lambda () (hs-minor-mode)))
 
 (unless (package-installed-p 'inf-ruby)
@@ -29,7 +48,7 @@
 
 (eval-after-load "hideshow"
   '(add-to-list 'hs-special-modes-alist
-    `(ruby-mode
+    `(enh-ruby-mode
       ,(rx (or "module" "do" "if" "while" "def" "class" "begin" "{" "[" "unless" "function")) ; Block start
       ,(rx (or "}" "]" "end"))                       ; Block end
       ,(rx (or "#" "=begin"))                        ; Comment start

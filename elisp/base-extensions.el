@@ -2,40 +2,27 @@
 ;;; Code:
 ;;; Commentary:
 
+
 ;; Bootstrap `use-package`
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
-(use-package all-the-icons)
+(require 'use-package)
 
- (use-package google-translate
-  :commands google-translate-at-point
-  :init
-  (setq google-translate-default-source-language "en")
-  (setq google-translate-default-target-language "vi")
-  (setq google-translate-base-url
-	"https://translate.google.com/translate_a/single"
-	google-translate--tkk-url
-	"https://translate.google.com/"))
-
-(use-package osx-dictionary
-  :commands (osx-dictionary-search-word-at-point osx-dictionary-search-input))
-
-;; (use-package avy
-;;   :bind
-;;   ("C-c SPC" . avy-goto-char))
+(use-package all-the-icons
+  :ensure t)
 
 ;; avy-mode
 (use-package avy
+  :ensure t
   :bind
   ("M-g g" . avy-goto-line)
   ;; ("c-s-o" . avy-goto-word-opr-subword-1)
-  ;; ("c-s-o" . avy-goto-char-2)
-  ;; ("c-s-o" . avy-goto-char)
-  ("C-s-o" . avy-goto-char-timer)
+  ("M-g s" . avy-goto-char-timer)
   :config
   (avy-setup-default) ;; can use c-' after trigger isearch
   )
@@ -62,6 +49,15 @@
   (setq company-echo-delay 0)                          ; remove annoying blinking
   (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
   )
+
+(use-package company-tabnine
+  :ensure t
+  :config
+  (add-to-list 'company-backends #'company-tabnine)
+  (setq company-show-numbers t)
+  (setq company-idle-delay 0)
+  )
+
 
 (use-package company-restclient
   :config
@@ -179,6 +175,7 @@
   (setq org-priority-faces '((?A . (:foreground "Red" :weight bold))
                            (?B . (:foreground "Yellow"))
                            (?C . (:foreground "LightSteelBlue"))))
+  (setq org-log-done t)
   :bind
   ("C-c l" . org-store-link)
   ("C-c a" . org-agenda)

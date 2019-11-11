@@ -10,7 +10,9 @@
 (use-package spacemacs-theme
   :defer t
   :init
-  (load-theme 'solarized-dark t))
+  ;; (load-theme 'solarized-dark t)
+  (load-theme 'atom-one-dark t)
+  )
 
 ;; make the fringe stand out from the background
 (setq solarized-distinct-fringe-background t)
@@ -22,7 +24,7 @@
 (setq solarized-high-contrast-mode-line t)
 
 ;; Use less bolding
-(setq solarized-use-less-bold t)
+;; (setq solarized-use-less-bold t)
 
 ;; Use more italics
 (setq solarized-use-more-italic t)
