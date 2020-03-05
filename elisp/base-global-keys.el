@@ -18,16 +18,14 @@
 
 (global-set-key [f8] 'neotree-toggle)
 
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-
 (global-set-key (kbd "C-c h") 'hs-hide-block)
 (global-set-key (kbd "C-c d") 'hs-show-block)
 
 
-(global-set-key [(control f3)] 'highlight-symbol)
+(global-set-key [(M-f3)] 'highlight-symbol)
 (global-set-key [f3] 'highlight-symbol-next)
 (global-set-key [(shift f3)] 'highlight-symbol-prev)
+
 (add-hook 'ruby-mode-hook
           (lambda () (highlight-symbol-mode)))
 (add-hook 'js-mode-hook

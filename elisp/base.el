@@ -5,7 +5,8 @@
 (package-initialize)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/")
-             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+             ;; '("elpy" . "http://jorgenschaefer.github.io/packages/")
+	     )
 
 (when (eq system-type 'darwin)
 
@@ -14,12 +15,16 @@
     (exec-path-from-shell-initialize))
   )
 
-(when (not package-archive-contents)
-  (package-refresh-contents))
-
+;; Load `use-package`
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+(require 'bind-key)
+
+(setq use-package-always-ensure t)
 
 (defconst private-dir  (expand-file-name "private" user-emacs-directory))
 (defconst temp-dir (format "%s/cache" private-dir)

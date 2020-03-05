@@ -2,15 +2,9 @@
 ;;; Code:
 ;;; Commentary:
 
-;; (use-package spacemacs-theme
-;;   :defer t
-;;   :init
-;;   (load-theme 'spacemacs-dark t))
-
 (use-package spacemacs-theme
   :defer t
   :init
-  ;; (load-theme 'solarized-dark t)
   (load-theme 'atom-one-dark t)
   )
 

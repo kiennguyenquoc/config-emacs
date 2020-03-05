@@ -13,14 +13,6 @@
 (add-to-list 'auto-mode-alist
              '("\\(?:\\.rb\\|ru\\|rake\\|thor\\|jbuilder\\|gemspec\\|podspec\\|/\\(?:Gem\\|Rake\\|Cap\\|Thor\\|Vagrant\\|Guard\\|Pod\\)file\\)\\'" . enh-ruby-mode))
 
-(use-package highlight-indentation
-  :ensure t
-  :config
-  (add-hook 'enh-ruby-mode-hook
-	    (lambda () (highlight-indentation-current-column-mode)))
-  (set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
-  )
-
 (use-package inf-ruby)
 
 (use-package robe
