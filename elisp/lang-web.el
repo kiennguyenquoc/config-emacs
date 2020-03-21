@@ -18,9 +18,10 @@
    ("\\.djhtml\\'" . web-mode)
    ("\\.jsx$" . web-mode))
   :config
-  (setq web-mode-markup-indent-offset 2
-        web-mode-css-indent-offset 2
-        web-mode-code-indent-offset 2)
+  (setq web-mode-markup-indent-offset 4
+        web-mode-css-indent-offset 4
+        web-mode-code-indent-offset 4)
+  (setq tab-width 4)
 
   (add-hook 'web-mode-hook 'jsx-flycheck)
 
